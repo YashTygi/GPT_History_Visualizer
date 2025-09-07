@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Upload, FileText, Archive, Sparkles, Brain, Network, AlertCircle, CheckCircle } from 'lucide-react';
+import Error from 'next/error';
 
 export default function Home() {
   const [dragActive, setDragActive] = useState(false);
@@ -72,36 +73,36 @@ export default function Home() {
       });
     }, 200);
 
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
+    // try {
+    //   const formData = new FormData();
+    //   formData.append('file', file);
       
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
+    //   const response = await fetch('/api/upload', {
+    //     method: 'POST',
+    //     body: formData,
+    //   });
 
-      const result = await response.json();
+    //   const result = await response.json();
 
-      if (!response.ok) {
-        throw new Error(result.error || 'Upload failed');
-      }
+    //   if (!response.ok) {
+    //     throw new Error(result.error || 'Upload failed');
+    //   }
 
-      setUploadProgress(100);
-      setSuccess(`Successfully processed ${result.metadata.conversationCount} conversations!`);
+    //   setUploadProgress(100);
+    //   setSuccess(`Successfully processed ${result.metadata.conversationCount} conversations!`);
       
-      // Redirect to visualization page
-      setTimeout(() => {
-        router.push(`/visualise/${result.sessionId}`);
-      }, 1500);
+    //   // Redirect to visualization page
+    //   setTimeout(() => {
+    //     router.push(`/visualise/${result.sessionId}`);
+    //   }, 1500);
       
-    } catch (error: any) {
-      console.error('Upload failed:', error);
-      setError(error.message || 'Upload failed. Please try again.');
-      setUploading(false);
-      setUploadProgress(0);
-      clearInterval(progressInterval);
-    }
+    // } catch (error: Error | any) {
+    //   console.error('Upload failed:', error);
+    //   setError(error.message || 'Upload failed. Please try again.');
+    //   setUploading(false);
+    //   setUploadProgress(0);
+    //   clearInterval(progressInterval);
+    // }
   };
 
   const onButtonClick = () => {
@@ -278,7 +279,7 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">
                 <div className="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-sm font-bold">1</div>
-                <p className="text-gray-300 text-sm">Visit ChatGPT settings and go to "Data Export"</p>
+                <p className="text-gray-300 text-sm">Visit ChatGPT settings and go to &quot;Data Export&quot;</p>
               </div>
               <div className="text-center">
                 <div className="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-sm font-bold">2</div>

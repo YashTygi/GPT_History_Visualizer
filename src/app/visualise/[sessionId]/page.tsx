@@ -5,15 +5,12 @@ import dynamic from "next/dynamic";
 import { useParams, useRouter } from "next/navigation";
 import { 
   ArrowLeft, 
-  Download, 
-  Settings, 
   Info, 
   Maximize2, 
   RotateCcw,
   Zap,
   Users,
   MessageSquare,
-  Calendar,
   Filter,
   Search
 } from "lucide-react";
@@ -73,18 +70,18 @@ export default function VisualizePage() {
       return matchesSearch && matchesCluster;
     }),
     links: rawGraphData.edges.filter(edge => {
-      const sourceExists = rawGraphData.nodes.some(node => 
-        node.id === edge.source && 
-        (filterCluster === "all" || node.cluster === filterCluster) &&
-        (node.label.toLowerCase().includes(searchTerm.toLowerCase()) || 
-         node.cluster.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
-      const targetExists = rawGraphData.nodes.some(node => 
-        node.id === edge.target && 
-        (filterCluster === "all" || node.cluster === filterCluster) &&
-        (node.label.toLowerCase().includes(searchTerm.toLowerCase()) || 
-         node.cluster.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
+    //   const sourceExists = rawGraphData.nodes.some(node => 
+    //     node.id === edge.source && 
+    //     (filterCluster === "all" || node.cluster === filterCluster) &&
+    //     (node.label.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    //      node.cluster.toLowerCase().includes(searchTerm.toLowerCase()))
+    //   );
+    //   const targetExists = rawGraphData.nodes.some(node => 
+    //     node.id === edge.target && 
+    //     (filterCluster === "all" || node.cluster === filterCluster) &&
+    //     (node.label.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    //      node.cluster.toLowerCase().includes(searchTerm.toLowerCase()))
+    //   );
       return true; //sourceExists && targetExists
     })
   };
