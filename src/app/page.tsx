@@ -192,6 +192,7 @@ export default function Home() {
             <input
               ref={inputRef}
               type="file"
+              title="Upload ChatGPT history file"
               multiple={false}
               className="hidden"
               accept=".json,.zip"
